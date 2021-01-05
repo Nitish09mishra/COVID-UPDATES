@@ -1,0 +1,295 @@
+/* green: #1DB954 */
+/* black: #000 */
+
+body {
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+html {
+    scroll-behavior: smooth;
+  }
+/* ////////////////////////////////////////////////////////   NAVBAR CSS    /////////////////////////////////////////////////////// */
+.mynav {
+    position: sticky;
+    top: 0;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 1.3rem;
+    background:  linear-gradient(#3d93e4, #011527);
+    padding: 0.6% 3%;
+    z-index: 999;
+}
+.navbar-brand {
+    color: #fff;
+    font-family: 'Merienda One', cursive;
+    font-size: 1.7rem;
+}
+.navbar-brand:hover {
+    color: #fff;
+    text-decoration: none;
+}
+.mynav .nav-item .nav-link {
+    color: #fff;
+    transition: all 0.2s;
+}
+.mynav .nav-item .nav-link:hover {
+    color: #000;
+}
+/* .nav-link:after{
+    content: " ";
+    position: absolute;
+    left: -50%;
+    bottom: 0;
+    transform: translateX(-50%) scaleX(0);
+    -webkit-transform: translateX(-50%) scaleX(0);
+    transform-origin: 50% 50%;
+    width: 100%;
+    height: 5px;
+    background-color: red;
+    transition: transform 250ms;
+    -webkit-transition: transform 250ms;
+}
+.nav-link:hover:after{
+    transform: translateX(50%) scale(1);
+} */
+/* .mynav .nav-item .myactive {
+    color: #000;
+} */
+
+/* ////////////////////////////////////////////////////////    CARD CSS     ////////////////////////////////////////////////////// */
+.heading {
+    font-size: 2.2rem;
+    color: rgba(241, 255, 255, 0.7);
+    letter-spacing: 1px;
+    word-spacing: 2px;
+    font-family: 'Bree Serif', serif;
+}
+#base_line {
+    background:  linear-gradient(to right, #093052, #5aa4e9, #093052);
+    width: 25%;
+}
+/* .cards {
+    background-image: linear-gradient(#00000073, #00000073), url('/img/virus.jpg');
+} */
+.card {
+    float: left;
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    margin: 0% auto 5%;
+    font-size: 1.9rem;
+    font-weight: 500;
+    text-align: center;
+    transition: ease-in 0.2s;
+}
+.card:hover {
+    transform: scale(0.97);
+    /* box-shadow: 0px 3px 7px #9ddbf3; */
+}
+.status {
+    font-size: 1.3rem;
+    color: rgba(252, 252, 252, 0.8);
+    font-weight: 400;
+    margin: 0;
+}
+.status_count {
+    margin: 0;
+    font-size: 1.7rem;
+}
+.delta_count {
+    font-size: 0.8rem;
+}
+
+/* ////////////////////////////////////////////////////////    Table css     ////////////////////////////////////////////////////// */
+.table thead th {
+    border: 0;
+}
+thead {
+    outline: 0;
+    border-bottom: 0;
+}
+thead tr:first-child th {
+    background: linear-gradient(rgba(32, 102, 129, 1), rgba(1, 21, 29, 1));
+    position: sticky; 
+    top: 71px; 
+    z-index: 990;
+}
+.table td, .table th {
+    font-family: 'Bree Serif', serif;
+    font-size: 1.3rem;
+    font-weight: 60;
+    vertical-align: middle;
+    border: 5px solid #000;
+    transition: ease 0.2s;
+}
+.table td {
+    padding: 3% 3%;
+}
+tbody tr td, tbody tr th {
+    background: linear-gradient(to right, rgba(92, 194, 235, 0.1), rgba(57, 132, 161, 0.1));
+}
+.table tr td:hover {
+    transform: scale(0.95);
+}
+.serial {
+    color: #ddd;
+}
+.state {
+    color: #ddd;
+}
+.confirmed {
+    color: #4291c5;
+}
+.active {
+    color: #f05959;
+}
+.recovered {
+    color: #1db837;
+}
+.deaths {
+    color: #b84c0e;
+}
+
+/* ///////////////////////////////////////////////////////     CSS FOR HELPLINES PAGE       //////////////////////////////////////////// */
+.states {
+    font-size: 1.3rem;
+    margin: 0;
+}
+.helpline {
+    margin: 0;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: mediumaquamarine;
+}
+.helpline:hover {
+    text-decoration: none;
+    color: #f34343;
+}
+
+/* ///////////////////////////////////////////////////////     FOOTER CSS    /////////////////////////////////////////////////////// */
+.page-footer {
+    background-color: #011527;
+    background-size: cover;
+    color: #fff;
+    font-weight: 80;
+    font-size: 1.4rem;
+}
+.page-footer p, .page-footer a {
+    text-decoration: none;
+    color: #eee;
+    font-size: 1.1rem;
+}
+.icons {
+    text-decoration: none;
+    color: #fff;
+    font-size: 2rem;
+    margin-left: 2%;
+}
+.icons:hover {
+    color: rgb(176, 176, 236);
+}
+.footer-copyright {
+    color: #888;
+    font-size: 1rem;
+    background-color: #010b13;
+}
+
+/* ///////////////////////////////////////////////////////     ABOUT US PAGE CSS     /////////////////////////////////////////////////////// */
+
+.abt_us {
+    background: linear-gradient(rgba(49, 2, 2, 0.9), rgba(26, 2, 49, 0.9)), url('/img/white.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 5% auto;
+    /* height: 80vh; */
+    color: #fff;
+    padding: 1.6% 5%;
+    width: 700px;
+    border-radius: 5px;
+}
+.abt_card {
+    border: 0;
+    border-radius: 10px;
+    color: #fff;
+    width: 100%;
+    margin: 0% auto;
+    min-height: 400px;
+    line-height: 1;
+    font-weight: 500;
+    transition: ease-in 0.2s;
+}
+.abt_card:hover {
+    transform: scale(0.97);
+    /* box-shadow: 0px 3px 7px #9ddbf3; */
+}
+.abt_card small {
+    font-size: 1rem;
+    margin: 0;
+    text-align: left;
+}
+
+/* ///////////////////////////////////////////////////////     MEDIA QUERY     /////////////////////////////////////////////////////// */
+@media(max-width: 993px) {
+    .heading {
+        font-size: 1.5rem;
+    }
+    .mynav{
+        padding: 1%;
+    }
+    .mynav .nav-item:hover {
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    .card {
+        font-size: 1rem;
+    }
+    .status_count {
+        margin: 0;
+        font-size: 1.3rem;
+    }
+
+    .states {
+        font-size: 0.8rem;
+        margin: 0;
+    }
+    .helpline {
+        margin: 0;
+        font-size: 1rem;
+    }
+
+    .abt_us {
+        width: 70%;
+    }
+    .abt_card p b {
+        font-size: 1.5rem;
+    }
+    .abt_card {
+        line-height: 1.5;
+        min-height: 250px;
+    }
+    .abt_columns {
+        padding: 2% 20%;
+    }
+}
+
+@media(max-width:766px) {
+    .columns {
+        padding: 2% 20%;
+    }
+
+    .abt_us {
+        width: 90%;
+    }
+    .abt_card p b {
+        font-size: 1.5rem;
+    }
+    .abt_card {
+        line-height: 1.5;
+        min-height: 250px;
+    }
+    .abt_columns {
+        padding: 2% 15%;
+    }
+}

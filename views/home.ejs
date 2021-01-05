@@ -1,0 +1,122 @@
+<%- include("partials/header") -%>
+    <title>Home</title>
+    </head>
+<body>
+
+<%- include("partials/navbar") -%>
+
+<!-- Total toll data of country -->
+<div class="container" style="padding: 0;">
+    <center><h1 class="heading mt-5">COVID-19 Cases Overview (India) &nbsp; &nbsp;<span class="date"></span></h1></center><hr class=" mb-5" id="base_line">
+    <div class="cards row mb-5">
+        <div class="col-md-4 columns">
+            <div class="card" id="tested" style="background: linear-gradient(314deg, #871996de 0%, #3f023cd2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-user-md mb-3" style="font-size: 1.5rem; color: #dea3e6;"></i>
+                    <p class="status">Tested</p>
+                    <p class="status_count"><%= country.tested[country.tested.length-1].totalsamplestested %> &nbsp;<small class="delta_count">↑ <%= country.tested[country.tested.length-1].samplereportedtoday %></small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 columns">
+            <div class="card" id="confirmed" style="background: linear-gradient(314deg, #196496de 0%, #022c3fd2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-viruses mb-3" style="font-size: 1.5rem; color: #a3d0ee;"></i>
+                    <p class="status">Confirmed</p>
+                    <p class="status_count"><%= country.statewise[0].confirmed %> &nbsp;<small class="delta_count">↑ <%= country.statewise[0].deltaconfirmed %></small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 columns">
+            <div class="card" id="active" style="background: linear-gradient(314deg, #961919d2 0%, #3f0202d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-procedures mb-3" style="font-size: 1.5rem; color: #e5a0a0;"></i>
+                    <p class="status">Active</p>
+                    <p class="status_count"><%= country.statewise[0].active %></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 columns">
+            <div class="card" id="recovered" style="background: linear-gradient(314deg, #659714d2 0%, #033f02d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-heart mb-3" style="font-size: 1.5rem; color: #c8e29e;"></i>
+                    <p class="status">Recovered</p>
+                    <p class="status_count"><%= country.statewise[0].recovered %> &nbsp;<small class="delta_count">↑ <%= country.statewise[0].deltarecovered  %></small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 columns">
+            <div class="card" id="deaths" style="background: linear-gradient(314deg, #964019d2 0%, #401602d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-skull-crossbones mb-3" style="font-size: 1.5rem; color: #e0b19b;"></i>
+                    <p class="status">Deceased</p>
+                    <p class="status_count"><%= country.statewise[0].deaths %> &nbsp;<small class="delta_count">↑ <%= country.statewise[0].deltadeaths %></small></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 columns">
+            <div class="card" id="testedon" style="background: linear-gradient(314deg, #199677d2 0%, #024030d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-history mb-3" style="font-size: 1.5rem; color: #a4e0d1;"></i>
+                    <p class="status">Updated</p> 
+                        <% if(country.statewise[0].lastupdatedtime.slice(11, 13)<12 ) { %>
+                            <p class="status_count"><%= country.statewise[0].lastupdatedtime.slice(11, 19)%> am </p>
+                        <% } %>
+    
+                        <% if(country.statewise[0].lastupdatedtime.slice(11, 13)>=12 ) { %>
+                            <p class="status_count"><%= country.statewise[0].lastupdatedtime.slice(11, 19)%> pm </p>
+                        <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- table starts -->
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" class="serial"><h3>S.no.</h3></th>
+            <th scope="col" class="state"><h3>State</h3></th>
+            <th scope="col" class="confirmed"><h3>Confirmed</h3></th>
+            <th scope="col" class="active"><h3>Active</h3></th>
+            <th scope="col" class="recovered"><h3>Recovered</h3></th>
+            <th scope="col" class="deaths"><h3>Deceased</h3></th>
+          </tr>
+        </thead>
+        <tbody>
+            <% var i=1 %>
+            <% country.statewise.shift() %>
+            <% country.statewise.forEach((state) => { %>
+                <tr>
+                    <th scope="row" class="serial"><%= i %></th>
+                    <td class="state"><%= state.state %></td>
+                    <td class="confirmed"><%= state.confirmed %><br> <small class="delta_count">↑ <%= state.deltaconfirmed %></small></td>
+                    <td class="active"><%= state.active %></td>
+                    <td class="recovered"><%= state.recovered %><br> <small class="delta_count">↑ <%= state.deltarecovered %></small></td>
+                    <td class="deaths"><%= state.deaths %><br> <small class="delta_count">↑ <%= state.deltadeaths %></small></td>
+                  </tr>
+                  <% i++ %>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <div class="row" style="background-color: rgba(80, 3, 3, 0.253);"> 
+        <div class="col-lg-6" style="padding: 2% 5%;">
+            <canvas id="myChart1" width="200" height="200" style="margin-top: 50px;  "></canvas>
+        </div>
+        <div class="col-lg-6" style="padding: 2% 5%;">
+            <canvas id="myChart2" width="200" height="200" style="margin-top: 50px; "></canvas>
+        </div>
+        <div class="col-lg-6" style="padding: 2% 5%;">
+            <canvas id="myChart3" width="200" height="200" style="margin-top: 50px; "></canvas>
+        </div>
+    </div>
+</div>
+        
+
+
+
+
+
+
+<%- include("partials/footer") -%>

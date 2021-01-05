@@ -1,0 +1,23 @@
+<%- include("partials/header") -%>
+    <title>Home</title>
+    </head>
+<body>
+
+<%- include("partials/navbar") -%>
+
+<div class="container" style="padding: 0;">
+    <center><h1 class="heading mt-5">Help line Numbers</h1></center><hr class=" mb-5" id="base_line" style="width: 20%;">
+    <div class="cards row">
+        <% helpline.forEach((helpline) => { %>
+            <div class="col-md-4 columns">
+                <div class="card" id="helpline" style="min-height: 100px; background: linear-gradient(314deg, #8c1996de 0%, #3f023ad2 74%),  url('/img/virus.jpg');">
+                    <div class="card-body">
+                        <p class="states"><%= helpline.state_or_UT%></p>
+                        <a class="helpline" title="click to make call at <%= helpline.helpline_number%>" href="tel:<%= helpline.helpline_number%>"><%= helpline.helpline_number%></a>
+                    </div>
+                </div>
+            </div>
+        <% })%>
+    </div>
+</div>
+

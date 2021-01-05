@@ -1,0 +1,149 @@
+<%- include("partials/header") -%>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {
+        'packages':['geochart'],
+        // Note: you will need to get a mapsApiKey for your project.
+        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+      });
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      
+      function drawRegionsMap() {  
+            var countries 
+            var data = google.visualization.arrayToDataTable([ 
+
+            fetch('https://covid-19.dataflowkit.com/v1').then((response) =>{
+                response.json().then((mydata) => {
+                        countries=mydata
+                        // console.log(countries)
+                })
+            }) 
+                ['Country', 'Total', 'Active', 'Recovered', 'Deceased'],
+                countries.forEach(country => {
+                    "["+ "["+ country["country_text"]+ "]"+ ','+ "'"+ country["Total Cases_text"]+"'"+ ','+ "'"+country["Active Cases_text"]+ "'"+','+ "'"+country["Total Recovered_text"]+ "'"+','+ "'"+ country["Total Deaths_text"]+"'"+ "]"+","
+                })
+                ])
+        var options = {
+            //   region: 'IN', 
+            colorAxis: {colors: ['#00853f', 'black', '#e31b23']},
+            backgroundColor: 'black',
+            datalessRegionColor: 'lightgreen',
+            defaultColor: '#00f5f5',
+        };
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+    <title>World</title>
+    </head>
+<body>
+
+<%- include("partials/navbar") -%>
+
+
+<!-- Total toll data of country -->
+<div class="container" style="padding: 0;">
+    <center><h1 class="heading mt-5">COVID-19 Cases Overview (World wide) &nbsp; &nbsp;<span class="date"></span></h1></center><hr class=" mb-5" id="base_line">
+    <div class="cards row mb-5">
+        <div class="col-md-4 columns">
+            <div class="card" id="confirmed" style="background: linear-gradient(314deg, #196496de 0%, #022c3fd2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-viruses mb-3" style="font-size: 1.5rem; color: #a3d0ee;"></i>
+                    <p class="status">Confirmed</p>
+                    <p class="status_count"><%= world[0]["Total Cases_text"] %> </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 columns">
+            <div class="card" id="active" style="background: linear-gradient(314deg, #961919d2 0%, #3f0202d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-procedures mb-3" style="font-size: 1.5rem; color: #e5a0a0;"></i>
+                    <p class="status">Active</p>
+                    <p class="status_count"><%= world[0]["Active Cases_text"]%> </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 columns">
+            <div class="card" id="recovered" style="background: linear-gradient(314deg, #659714d2 0%, #033f02d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-heart mb-3" style="font-size: 1.5rem; color: #c8e29e;"></i>
+                    <p class="status">Recovered</p>
+                    <p class="status_count"><%= world[0]["Total Recovered_text"] %> </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 columns">
+            <div class="card" id="deaths" style="background: linear-gradient(314deg, #964019d2 0%, #401602d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-skull-crossbones mb-3" style="font-size: 1.5rem; color: #e0b19b;"></i>
+                    <p class="status">Deceased</p>
+                    <p class="status_count"><%= world[0]["Total Deaths_text"] %></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4 columns">
+            <div class="card" id="updatedon" style="background: linear-gradient(314deg, #199677d2 0%, #024030d2 74%),  url('/img/virus.jpg');">
+                <div class="card-body">
+                    <i class="fa fa-history mb-3" style="font-size: 1.5rem; color: #a4e0d1;"></i>
+                    <p class="status">Updated</p> 
+                    <% if(world[0]["Last Update"].slice(11, 13)<12 ) { %>
+                        <p class="status_count"><%= world[0]["Last Update"].slice(11, 16) %> am </p>
+                    <% } %>
+
+                    <% if(world[0]["Last Update"].slice(11, 13)>=12 ) { %>
+                        <p class="status_count"><%= world[0]["Last Update"].slice(11, 16) %> pm </p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ <!-- table starts -->
+ <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" class="serial"><h3>S.no.</h3></th>
+        <th scope="col" class="state"><h3>Country</h3></th>
+        <th scope="col" class="confirmed"><h3>Confirmed</h3></th>
+        <th scope="col" class="active"><h3>Active</h3></th>
+        <th scope="col" class="recovered"><h3>Recovered</h3></th>
+        <th scope="col" class="deaths"><h3>Deceased</h3></th>
+      </tr>
+    </thead>
+    <tbody>
+        <% var i=1 %>
+        <% world.forEach((country) => { %>
+            <% if(country["Country_text"] !== "World" && i<216) { %>
+                <tr>
+                    <th scope="row" class="serial"><%= i %></th>
+                    <td class="state"><%= country["Country_text"] %></td>
+                    <td class="confirmed"><%= country["Total Cases_text"] %></td>
+                    <td class="active"><%= country["Active Cases_text"] %></td>
+                    <td class="recovered"><%= country["Total Recovered_text"] %></td>
+                    <td class="deaths"><%= country["Total Deaths_text"] %></td>
+                </tr>
+                <% i++ %>
+            <% } %>
+        <% }) %>
+    </tbody>
+</table>
+
+
+</div>
+
+<!-- chart starts here -->
+<div id="regions_div" style="width: 1200px; height: 500px; background-color: rgba(0, 0, 0, 0.281); margin: 5% auto;"></div>
+
+
+
+<%- include("partials/footer") -%>
